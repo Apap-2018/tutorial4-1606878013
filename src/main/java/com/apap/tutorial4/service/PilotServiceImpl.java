@@ -26,4 +26,11 @@ public class PilotServiceImpl implements PilotService {
     public void deletePilot(PilotModel pilot) {
         pilotDb.delete(pilot);
     }
+
+    @Override
+    public void updatePilot(PilotModel pilot, String name, int flyHour) {
+        pilot.setName(name);
+        pilot.setFlyHour(flyHour);
+        pilotDb.save(pilot);
+    }
 }

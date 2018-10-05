@@ -8,4 +8,6 @@ public interface PilotService {
     void addPilot (PilotModel pilot);
 
     void deletePilot (PilotModel pilot);
+
+    void updatePilot (PilotModel pilot, String name, int flyHour);
 }
