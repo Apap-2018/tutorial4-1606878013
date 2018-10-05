@@ -7,10 +7,7 @@ import com.apap.tutorial4.service.PilotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class FlightController {
@@ -34,5 +31,12 @@ public class FlightController {
     private String addFlightSubmit(@ModelAttribute FlightModel flight){
         flightService.addFlight(flight);
         return "add";
+    }
+
+    @RequestMapping(value = "/flight/delete/{id}", method = RequestMethod.GET)
+    private String deleteFlight(@PathVariable (value = "id") long id, Model model)  {
+        FlightModel flight = flightService.findFlightById(id);
+        flightService.deleteFlight(flight);
+        return "delete";
     }
 }

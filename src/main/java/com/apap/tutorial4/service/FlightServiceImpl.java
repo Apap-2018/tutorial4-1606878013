@@ -16,4 +16,14 @@ public class FlightServiceImpl implements FlightService{
     public void addFlight(FlightModel flight) {
         flightDb.save(flight);
     }
+
+    @Override
+    public FlightModel findFlightById(long id) {
+        return flightDb.getOne(id);
+    }
+
+    @Override
+    public void deleteFlight (FlightModel flightModel){
+        flightDb.delete(flightModel);
+    }
 }

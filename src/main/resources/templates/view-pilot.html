@@ -20,6 +20,7 @@
             <h5 th:text = "${flights.origin}"></h5>
             <h5 th:text = "${flights.destination}"></h5>
             <h5 th:text = "${flights.time}"></h5>
+            <h5><a th:href = "@{|/flight/delete/${flights.id}|}">Delete</a></h5>
         </div>
     </div>
     <td><a th:href="@{|/flight/add/${pilot.licenseNumber}|}">Add Flight</a></td>
