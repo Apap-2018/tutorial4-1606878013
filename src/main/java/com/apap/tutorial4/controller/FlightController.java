@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+
 @Controller
 public class FlightController {
     @Autowired
@@ -38,5 +40,23 @@ public class FlightController {
         FlightModel flight = flightService.findFlightById(id);
         flightService.deleteFlight(flight);
         return "delete";
+    }
+
+    @RequestMapping(value = "/flight/update/{id}", method = RequestMethod.GET)
+    private String update (@PathVariable(value = "id") long id, Model model) {
+        FlightModel flightModel = flightService.findFlightById(id);
+        model.addAttribute("flight", flightModel);
+        return "updateFlight";
+    }
+
+    @RequestMapping(value = "/flight/update/{id}", method = RequestMethod.POST)
+    private String updateFlightSubmit (@PathVariable(value = "id") long id,
+                                       @RequestParam("flightNumber") String flightNumber,
+                                       @RequestParam("origin") String origin,
+                                       @RequestParam("destination") String destination,
+                                       @RequestParam("time") Date time, Model model) {
+        FlightModel flight = flightService.findFlightById(id);
+        flightService.updateFlight(flight, flightNumber, origin, destination, time);
+        return "update";
     }
 }
